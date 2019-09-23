@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Report{% endblock %}
+{% block body %}
+    <h1>{{ block('title') }}</h1>
+
+    <p><b>Počet zákazníků: </b> {{ cntCustomers }} </p>
+
+    <table>
+        <caption>TOP 10 zákazníků</caption>
+        <tr>
+            <th>jméno</th>
+            <th>adresa</th>
+            <th>email</th>
+            <th>telefon</th>
+            <th>nákup</th>
+        </tr>
+        {% for customer in topCustomers %}
+        <tr>
+            <td>{{ customer.surname }} {{ customer.name }}</td>
+            <td>{{ customer.adress }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.telephone }}</td>
+            <td>{{ customer.sumCustom }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

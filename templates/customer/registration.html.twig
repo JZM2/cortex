@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrace zákazníka</title>
+</head>
+<body>
+
+<h1>Registrace zákazníka</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{{ form_start(customerForm) }}
+
+{{ form_errors(customerForm) }}
+
+{{ form_widget(customerForm) }}
+
+<button type="submit">Registrovat</button>
+
+{{ form_end(customerForm) }}
+</body>
+</html>

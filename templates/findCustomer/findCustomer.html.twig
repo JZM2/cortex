@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vyhledání zákazníka</title>
+</head>
+<body>
+
+<h1>Vyhledání zákazníka</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{{ form_start(customerFindForm) }}
+
+{{ form_errors(customerFindForm) }}
+
+{{ form_widget(customerFindForm) }}
+
+<button type="submit">Vyhledat</button>
+
+{{ form_end(customerFindForm) }}
+
+
+<table>
+    <tr>
+        <th>jméno</th>
+        <th>adresa</th>
+        <th>Email</th>
+        <th>Telefon</th>
+        <th>čísla karet</th>
+    </tr>
+{% for customer in findCustomers %}
+    <tr>
+        <td>{{ customer.surname }} {{ customer.name }}</td>
+        <td>{{ customer.adress }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.telephone }}</td>
+        <td>{% for card in customer.cards %}
+                {{ card.id }},
+            {% endfor %}</td>
+    </tr>
+{% endfor %}
+</table>
+
+
+</body>
+</html>
