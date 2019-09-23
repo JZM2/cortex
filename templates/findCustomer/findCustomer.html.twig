@@ -39,7 +39,7 @@
         <td>{{ customer.adress }}</td>
         <td>{{ customer.email }}</td>
         <td>{{ customer.telephone }}</td>
-        <td>{% for card in customer.cards %}
+        <td>{% for card in customer.card %}
                 {{ card.id }},
             {% endfor %}</td>
     </tr>

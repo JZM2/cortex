@@ -131,7 +131,7 @@ class IndexController extends AbstractController
 
                 if ($data['idc'] != null) {
                     $query
-                        ->innerJoin('c.cards', 'k', 'WITH', 'k.id = :idc')
+                        ->innerJoin('c.card', 'u', 'WITH', 'u.id = :idc')
                         ->setParameter('idc', $data['idc']);
                 }
 
@@ -176,6 +176,7 @@ class IndexController extends AbstractController
 
         return $this->render('report/report.html.twig', [
             'cntCustomers' => $report->getCntCustomers(),
+            'cntCardAssociated' => $report->getCntCard(),
             'topCustomers' => $report->getTopCustomer(),
         ]);
     }

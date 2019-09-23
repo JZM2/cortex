@@ -63,7 +63,7 @@ class FindTest extends WebTestCase
         );
 
         $form['find_customer_form[surname]']->setValue('');
-        $form['find_customer_form[idc]']->setValue('123456789');
+        $form['find_customer_form[idc]']->setValue('123');
         $this->client->submit($form);
 
         $this->assertContains(

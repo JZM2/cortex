@@ -40,6 +40,16 @@ class Report
         return $findCustomers[0]['cntCustomers'];
     }
 
+    public function getCntCard(): int
+    {
+        $stmt = $this->em->getConnection()->prepare('SELECT sumCardAssociated() AS sumCardAssociated');
+        $stmt->execute();
+
+        $topCustomers = $stmt->fetchAll();
+
+        return $topCustomers[0]['sumCardAssociated'];
+    }
+
     public function getTopCustomer(): array
     {
         $query = $this->em->createQuery('SELECT * FROM reporttopcustomers');
