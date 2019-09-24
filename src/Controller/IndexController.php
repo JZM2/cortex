@@ -58,7 +58,7 @@ class IndexController extends AbstractController
                 $em = $this->getDoctrine()->getManager();
 
                 /** @var Customer $cust_exists */
-                $cust_exists = $em->getRepository(Customer::class)->findOneBy( ["email" => $customer->getEmail()]);
+                $cust_exists = $em->getRepository(Customer::class)->findOneBy(["email" => $customer->getEmail()]);
 
                 if (!$cust_exists) {
                     $cust_exists = $customer;
@@ -74,7 +74,6 @@ class IndexController extends AbstractController
                 }
 
                 $cust_exists->addCard($card);
-
 
                 $em->persist($cust_exists);
                 $em->flush();

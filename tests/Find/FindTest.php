@@ -6,6 +6,7 @@
 
 namespace App\Tests\Find;
 
+use http\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -14,10 +15,16 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
  */
 class FindTest extends WebTestCase
 {
-    public function testFindIndex()
+    /** @var Client $client */
+    private $client;
+
+    protected function setUp()
     {
         $this->client = self::createClient();
+    }
 
+    public function testFindIndex()
+    {
         $this->client->request('GET', '/Customer/find');
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -30,8 +37,6 @@ class FindTest extends WebTestCase
 
     public function testFindingCustomer()
     {
-        $this->client = self::createClient();
-
         $crawler = $this->client->request('GET', '/Customer/find');
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
@@ -68,6 +73,18 @@ class FindTest extends WebTestCase
 
         $this->assertContains(
             'Zákazník nalezen',
+            $this->client->getResponse()->getContent()
+        );
+    }
+
+    public function testReport()
+    {
+        $crawler = $this->client->request('GET', '/Report');
+
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+
+        $this->assertContains(
+            'Report',
             $this->client->getResponse()->getContent()
         );
     }
