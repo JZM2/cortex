@@ -169,7 +169,7 @@ class IndexController extends AbstractController
      */
     public function reportCustomer()
     {
-        $report = new Report($this->getDoctrine()->getManager());
+        $report = Report::Create($this->getDoctrine()->getManager());
 
         $report->getCntCustomers();
 

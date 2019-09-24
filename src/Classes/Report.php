@@ -10,7 +10,6 @@ namespace App\Classes;
 use App\Repository\ReportTopCustomersRepository;
 use Doctrine\ORM\EntityManager;
 use App\Entity\Customer;
-use phpDocumentor\Reflection\Types\Mixed_;
 
 class Report
 {
@@ -20,6 +19,10 @@ class Report
     /** @var int $cntCustomers */
     private $cntCustomers = 0;
 
+    public static function Create(EntityManager $em)
+    {
+        return new Report($em);
+    }
 
     public function __construct(EntityManager $em)
     {
